@@ -9,12 +9,14 @@ if __name__ == "__main__":
 		next_state = Game_of_Life.next_board_state(initial_state)
 
 		while count != 0:
+			print('')
 			Game_of_Life.render_board(next_state)
 			next_state = Game_of_Life.next_board_state(next_state)
 			#count = count - 1
 			#os.system('cls')
-			time.sleep(0)
+			time.sleep(0.05)
+			print('\033[70A\033[2K', end='')
 
 	
-	init_state = Game_of_Life.random_state(70, 250)
+	init_state = Game_of_Life.random_state(70, 270)
 	generate_soup(init_state)
