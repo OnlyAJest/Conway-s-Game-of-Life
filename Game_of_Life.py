@@ -107,12 +107,12 @@ def run_game(initial_state, wait_time):
 			#os.system('cls')
 			time.sleep(wait_time)
 
+
 def load_board(file):
 	board = []
 	valid = True
 
 	with open(file, "r") as f:
-		count = 0
 		for line in f:
 			row = []
 			for i in line.strip():
@@ -121,8 +121,8 @@ def load_board(file):
 	
 		row_length = len(board[1])
 		
-		for row in range(row_length):
-			if row_length != len(board[row]):
+		for item in range(len(board)):
+			if row_length != len(board[item]):
 				valid = False
 
 		if valid == False:
