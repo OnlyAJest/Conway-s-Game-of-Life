@@ -1,4 +1,6 @@
 import random
+import time
+#import os
 
 def random_state(height, width):
 	board_state = [[0 for x in range(width)] for x in range(height)]
@@ -89,3 +91,42 @@ def next_board_state(board_state):
 
 #render_board(random_state(40, 100))
 
+def run_game(initial_state, wait_time):
+		print("")
+		render_board(initial_state)
+		count = 20
+		next_state = next_board_state(initial_state)
+
+		board_height = len(initial_state)
+
+		while count != 0:
+			print(f'\033[{board_height}A', end='')
+			render_board(next_state)
+			next_state = next_board_state(next_state)
+			#count = count - 1
+			#os.system('cls')
+			time.sleep(wait_time)
+
+def load_board(file):
+	board = []
+	valid = True
+
+	with open(file, "r") as f:
+		count = 0
+		for line in f:
+			row = []
+			for i in line.strip():
+				row.append(int(i))
+			board.append(row)
+	
+		row_length = len(board[1])
+		
+		for row in range(row_length):
+			if row_length != len(board[row]):
+				valid = False
+
+		if valid == False:
+			print ("Invalid board, please ensure all rows are of same length.")
+			return None
+		else:
+			return board
